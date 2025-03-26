@@ -1,0 +1,29 @@
+{
+  "EmpList": [
+    {
+      "name": "Sparsh Yadav",
+      "profileImage": "/Assets/person4.jpeg",
+      "gender": "female",
+      "departments": [
+        "sales"
+      ],
+      "salary": "₹30,000",
+      "startDate": "02-03-2023",
+      "notes": "",
+      "id": "28f4"
+    },
+    {
+      "id": "992d",
+      "name": "Rakshit Chauhan",
+      "profileImage": "/Assets/person4.jpeg",
+      "gender": "male",
+      "departments": [
+        "finance",
+        "others"
+      ],
+      "salary": "₹30,000",
+      "startDate": "09-06-2023",
+      "notes": ""
+    }
+  ]
+}
