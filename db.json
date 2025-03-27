@@ -13,17 +13,43 @@
       "id": "28f4"
     },
     {
-      "id": "992d",
-      "name": "Rakshit Chauhan",
-      "profileImage": "/Assets/person4.jpeg",
+      "name": "Raghav Khattar",
+      "profileImage": "/Assets/person3.jpeg",
       "gender": "male",
       "departments": [
         "finance",
         "others"
       ],
-      "salary": "₹30,000",
+      "salary": "₹40,000",
+      "startDate": "09-06-2023",
+      "notes": "",
+      "id": "992d"
+    },
+    {
+      "id": "992d",
+      "name": "Raghav Khattar",
+      "profileImage": "/Assets/person3.jpeg",
+      "gender": "male",
+      "departments": [
+        "finance",
+        "others"
+      ],
+      "salary": "₹40,000",
       "startDate": "09-06-2023",
       "notes": ""
+    },
+    {
+      "id": "39c9",
+      "name": "Amandeep",
+      "profileImage": "/Assets/person4.jpeg",
+      "gender": "male",
+      "departments": [
+        "sales",
+        "engineer"
+      ],
+      "salary": "₹20,000",
+      "startDate": "18-10-2023",
+      "notes": "Good boii"
     }
   ]
 }

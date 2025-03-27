@@ -33,7 +33,7 @@ const Header = () => {
         
         {userName && (
           <div className="relative">
-            <div 
+            <button 
               className="flex items-center gap-2 cursor-pointer" 
               onClick={toggleDropdown}
             >
@@ -45,7 +45,7 @@ const Header = () => {
               <span className="text-[#42515F] font-medium hidden md:inline">
                 {userName}
               </span>
-            </div>
+            </button>
 
             {isDropdownOpen && (
               <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-10">
