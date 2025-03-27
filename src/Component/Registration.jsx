@@ -6,6 +6,7 @@ import person3 from '../assets/person3.jpeg';
 import person4 from '../assets/person4.jpeg';
 import Header from '../Component/Header';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const Registration = () => {
   const navigate = useNavigate();
@@ -55,14 +56,14 @@ const Registration = () => {
 
     try {
       if (isEdit) {
-        await axios.put(`http://localhost:3001/EmpList/${id}`, employeeData);
+        await axios.put(`${import.meta.env.VITE_BASE_URL}/EmpList/${id}`, employeeData);
       } else {
-        await axios.post('http://localhost:3001/EmpList', employeeData);
+        await axios.post(`${import.meta.env.VITE_BASE_URL}/EmpList`, employeeData);
       }
       handleReset();
       navigate('/dashboard');
     } catch (error) {
-      console.error('Submission error:', error);
+      toast.error('Submission error:', error);
       alert('Error adding employee. Please try again.');
     }
   };

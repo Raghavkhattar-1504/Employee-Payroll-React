@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../Component/Header';
 import { Search, Plus, Trash2, Pencil } from 'lucide-react'
+import { toast } from 'react-toastify';
 
 const withNavigate = (Component) => {
   return (props) => {
@@ -30,7 +31,7 @@ class Dashboard extends Component {
   fetchEmployees = async () => {
     this.setState({ loading: true });
     try {
-      const response = await fetch('http://localhost:3001/EmpList');
+      const response = await fetch(`${import.meta.env.VITE_BASE_URL}/EmpList`);
       if (!response.ok) {
         throw new Error('Failed to fetch employees');
       }
@@ -52,7 +53,7 @@ class Dashboard extends Component {
   confirmDelete = async () => {
     const { employeeIdToDelete } = this.state;
     try {
-      const response = await fetch(`http://localhost:3001/EmpList/${employeeIdToDelete}`, {
+      const response = await fetch(`${import.meta.env.VITE_BASE_URL}/EmpList/${employeeIdToDelete}`, {
         method: 'DELETE'
       });
       if (!response.ok) {
@@ -63,9 +64,8 @@ class Dashboard extends Component {
       }));
 
       this.setState({isModalOpen: false});
-      console.log(`Employee with ID ${employeeIdToDelete} deleted`);
     } catch (error) {
-      console.error('Failed to delete employee', error);
+      toast.error('Failed to delete employee', error);
     }
   };
 
