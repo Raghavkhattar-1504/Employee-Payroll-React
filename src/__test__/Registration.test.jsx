@@ -4,7 +4,6 @@ import Registration from '../Component/Registration';
 import axios from 'axios';
 import { BrowserRouter } from 'react-router-dom';
 
-// Polyfill for older Node versions (optional, remove if not needed)
 if (typeof global.TextEncoder === 'undefined') {
   const { TextEncoder, TextDecoder } = require('text-encoding');
   global.TextEncoder = TextEncoder;
@@ -13,13 +12,11 @@ if (typeof global.TextEncoder === 'undefined') {
 
 jest.mock('axios');
 
-// Mock image imports
 jest.mock('../../assets/person1.jpeg', () => '/mocked/person1.jpeg');
 jest.mock('../../assets/person2.jpeg', () => '/mocked/person2.jpeg');
 jest.mock('../../assets/person3.jpeg', () => '/mocked/person3.jpeg');
 jest.mock('../../assets/person4.jpeg', () => '/mocked/person4.jpeg');
 
-// Mock react-router-dom
 const mockNavigate = jest.fn();
 const mockLocation = { state: null };
 jest.mock('react-router-dom', () => {
@@ -40,15 +37,15 @@ const MockRegistration = () => (
 describe('Registration Component', () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    mockLocation.state = null; // Reset mockLocation state
+    mockLocation.state = null; 
     render(<MockRegistration />);
   });
 
   const fillForm = () => {
     fireEvent.change(screen.getByLabelText(/Name/i), { target: { value: 'John Doe' } });
-    fireEvent.click(screen.getByRole('radio', { name: 'Profile 1' })); // Match exact alt text
-    fireEvent.click(screen.getByTestId("male")); // Should work with fixed component
-    fireEvent.click(screen.getByLabelText('HR')); // Exact match for checkbox label
+    fireEvent.click(screen.getByRole('radio', { name: 'Profile 1' })); 
+    fireEvent.click(screen.getByTestId("male")); 
+    fireEvent.click(screen.getByLabelText('HR')); 
     fireEvent.change(screen.getByLabelText(/Select Salary/i), { target: { value: '₹10,000' } });
     fireEvent.change(screen.getByTestId(/day/i), { target: { value: '01' } });
     fireEvent.change(screen.getByTestId(/month/i),{ target: { value: '01' } });
@@ -109,55 +106,6 @@ describe('Registration Component', () => {
     fireEvent.click(screen.getByText(/Cancel/i));
     expect(mockNavigate).toHaveBeenCalledWith('/dashboard');
   });
-
-  // test('pre-fills form fields when editing an employee', () => {
-  //   mockLocation.state = {
-  //     isEdit: true,
-  //     employee: {
-  //       id: 1,
-  //       name: 'Jane Doe',
-  //       profileImage: '/Assets/person1.jpeg',
-  //       gender: 'female',
-  //       departments: ['HR', 'sales'],
-  //       salary: '₹20,000',
-  //       startDate: '15-03-2023',
-  //       notes: 'Experienced hire',
-  //     },
-  //   };
-  //   render(<MockRegistration />);
-  //   expect(screen.getByLabelText(/Name/i)).toHaveValue('Jane Doe');
-  //   expect(screen.getByRole('radio', { name: 'Profile 1' })).toBeChecked();
-  //   expect(screen.getByRole('radio', { name: /female/i })).toBeChecked();
-  //   expect(screen.getByLabelText('HR')).toBeChecked();
-  //   expect(screen.getByLabelText('Sales')).toBeChecked();
-  //   expect(screen.getByLabelText(/Select Salary/i)).toHaveValue('₹20,000');
-  //   expect(screen.getByLabelText(/day/i, { selector: '#day' })).toHaveValue('15');
-  //   expect(screen.getByLabelText(/month/i, { selector: '#month' })).toHaveValue('03');
-  //   expect(screen.getByLabelText(/year/i, { selector: '#year' })).toHaveValue('2023');
-  //   expect(screen.getByLabelText(/Notes/i)).toHaveValue('Experienced hire');
-  //   expect(screen.getByText('Update Employee')).toBeInTheDocument();
-  // });
-
-  // test('updates employee successfully in edit mode', async () => {
-  //   jest.spyOn(window, 'alert').mockImplementation(() => {});
-  //   mockLocation.state = {
-  //     isEdit: true,
-  //     employee: { id: 1, name: 'Jane Doe', startDate: '15-03-2023' },
-  //   };
-  //   render(<MockRegistration />);
-  //   axios.put.mockResolvedValue({ status: 200 });
-  //   fillForm();
-  //   fireEvent.click(screen.getByText(/Update/i));
-  //   await waitFor(() => expect(screen.getByText('Are you sure you want to Edit the employee?')).toBeInTheDocument());
-  //   fireEvent.click(screen.getByText('Edit'));
-  //   await waitFor(() => {
-  //     expect(axios.put).toHaveBeenCalledWith('http://localhost:3001/EmpList/1', expect.objectContaining({
-  //       name: 'John Doe',
-  //       gender: 'male',
-  //     }));
-  //     expect(mockNavigate).toHaveBeenCalledWith('/dashboard');
-  //   });
-  // });
 
   test('closes modal when Cancel is clicked in confirmation', async () => {
     fillForm();
